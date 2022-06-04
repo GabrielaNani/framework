@@ -8,6 +8,20 @@ const isDev =  !isProd
 console.log("isProd =", isProd)
 console.log("isDev =", isDev)
 
+const jsLoaders = () => {
+    const loaders = [
+        {
+            loader: "babel-loader",
+            options: {
+                presets: ['@babel/preset-env']
+            }}
+    ]
+    if(isDev){
+        loaders.push("eslint-loader")
+    }
+    return loaders
+}
+
 module.exports = {
     context: path.resolve(__dirname, "src"),
     mode: "development",
@@ -26,6 +40,10 @@ module.exports = {
         }
     },
     devtool: isDev ? "source-map" : false,
+    devServer: {
+        port: 9000,
+        hot: isDev
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: "index.html",
@@ -61,12 +79,7 @@ module.exports = {
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
+                use: jsLoaders()
             }
         ],
     }
