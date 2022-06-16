@@ -3,10 +3,11 @@ export class Excel {
     this.element = document.querySelector(selector);
     this.components = options.components || [];
   }
+
   getRoot() {
     const $root = document.createElement("div")
     $root.classList.add("excel")
-    this.components.forEach(Component =>{
+    this.components.forEach(Component => {
       const $element = document.createElement("div")
       $element.classList.add(Component.className)
       const component = new Component($element)
@@ -15,6 +16,7 @@ export class Excel {
     })
     return $root
   }
+
   render() {
     // this.element.insertAdjacentHTML("afterbegin", "<h1> Eu pot </h1>")
     // const node = document.createElement("h1")
