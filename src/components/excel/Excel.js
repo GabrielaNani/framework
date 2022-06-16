@@ -9,9 +9,9 @@ export class Excel {
     this.components.forEach(Component =>{
       const $element = document.createElement("div")
       $element.classList.add(Component.className)
-      // $root.append($element)
       const component = new Component($element)
-      $root.insertAdjacentHTML("beforeend", component.toHTML())
+      $element.innerHTML = component.toHTML()
+      $root.append($element)
     })
     return $root
   }
