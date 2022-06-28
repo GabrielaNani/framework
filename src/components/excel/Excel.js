@@ -2,7 +2,7 @@ import {$} from "@core/dom";
 
 export class Excel {
   constructor(selector, options) {
-    this.element = document.querySelector(selector);
+    this.$element = $(selector)
     this.components = options.components || [];
   }
 
@@ -10,7 +10,7 @@ export class Excel {
     // const $root = document.createElement("div")
     const $root = $.create("div", "excel")
     // $root.classList.add("excel")
-    this.components.forEach(Component => {
+    this.components = this.components.map(Component => {
       const $element = $.create("div", Component.className);
       // const $element = document.createElement("div")
       // $element.classList.add(Component.className)
@@ -18,6 +18,7 @@ export class Excel {
       // $element.innerHTML = component.toHTML()
       $element.html(component.toHTML())
       $root.append($element)
+      return component
     })
     return $root
   }
@@ -27,6 +28,7 @@ export class Excel {
     // const node = document.createElement("h1")
     // this.element.append(node)
     // node.textContent = "Eu pot"
-    this.element.append(this.getRoot())
+    this.$element.append(this.getRoot())
+    this.components.forEach(component => component.init() )
   }
 }

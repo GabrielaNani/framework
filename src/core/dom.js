@@ -14,10 +14,21 @@ class Dom {
     this.html("")
     return this
   }
+  append(node) {
+    if (node instanceof Dom) {
+      node = node.$element
+      if (Element.prototype.append) {
+        this.$element.append(node)
+      } else {
+        this.$element.appendChild(node)
+      }
+    }
+    return this
+  }
 }
 
-export function $() {
-  return new Dom()
+export function $(selector) {
+  return new Dom(selector)
 }
 
 $.create = (tagName, classes = "") => {
