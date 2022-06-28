@@ -7,7 +7,13 @@ export class DomListener {
     this.listeners = listeners
   }
   initDOMListeners() {
-    console.log(this.listeners)
+    this.listeners.forEach(listener => {
+      console.log("listener:", "on" + listener)
+      // this.$root.addEventListener(listener, onInput)
+      // this.$root.on(listener, "on" + listener)
+    })
+    console.log("listeners:", this.listeners)
+    console.log("root:", this.$root)
   }
   removeDOMListeners() {
   }

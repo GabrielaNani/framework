@@ -5,8 +5,11 @@ export class Formula extends ExcelComponent {
   constructor($root) {
     super($root, {
       name: "Formula",
-      listeners: ["input"],
+      listeners: ["input", "click"],
     });
+  }
+  onInput(ev) {
+    console.log("formula", ev)
   }
   toHTML() {
     return `
