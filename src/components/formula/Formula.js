@@ -9,7 +9,11 @@ export class Formula extends ExcelComponent {
     });
   }
   onInput(ev) {
-    console.log("formula", ev)
+    // console.log("formula", ev)
+    console.log(ev.target.textContent);
+  }
+  onClick(ev) {
+    console.log("Formula has been clicked")
   }
   toHTML() {
     return `
