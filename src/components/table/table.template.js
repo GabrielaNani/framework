@@ -14,11 +14,12 @@ const createCol = (content) => {
 
 const createRow = (content, index) => {
   console.log("index: ", index)
+  const resizer = index ? ` <div class="row-resize">
+   </div>` : ""
   return `
    <div class="row">
         <div class="row-info">
-        <div class="row-resize">
-   </div>
+      ${resizer}
     ${index ?index : ""}
         </div>
         <div class="row-data">

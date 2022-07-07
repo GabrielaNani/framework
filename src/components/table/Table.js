@@ -14,7 +14,7 @@ export class Table extends ExcelComponent {
     console.log("click")
   }
   onMousedown(ev) {
-    console.log("mouse down")
+    console.log("mouse down", ev.target)
   }
   onMouseup(ev) {
     console.log("mouse up")
