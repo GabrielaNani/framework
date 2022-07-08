@@ -20,6 +20,12 @@ class Dom {
   off(eventType, callback) {
     this.$element.removeEventListener(eventType, callback)
   }
+  closest(selector) {
+    return $(this.$element.closest(selector))
+  }
+  getCords() {
+    return this.$element.getBoundingClientRect()
+  }
   append(node) {
     if (node instanceof Dom) {
       node = node.$element

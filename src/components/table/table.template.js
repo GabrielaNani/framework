@@ -5,20 +5,21 @@ const CODES = {
 
 const createCol = (content) => {
   return `
-  <div class="column">
+<div class=''></div>
+  <div class="column" data-type="resizable">
    ${content} 
-   <div class="col-resize">
+   <div class="col-resize" data-resize="column">
   </div>
   </div>`
 }
 
 const createRow = (content, index) => {
   console.log("index: ", index)
-  const resizer = index ? ` <div class="row-resize">
+  const resizer = index ? ` <div class="row-resize" data-resize="row">
    </div>` : ""
   return `
    <div class="row">
-        <div class="row-info">
+        <div class="row-info" data-type="resizable">
       ${resizer}
     ${index ?index : ""}
         </div>
