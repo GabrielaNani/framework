@@ -3,18 +3,17 @@ const CODES = {
   Z: 90
 }
 
-const createCol = (content) => {
+const createCol = (content, index) => {
   return `
 <div class=''></div>
-  <div class="column" data-type="resizable">
-   ${content} 
+  <div class="column" data-type="resizable" data-col="${index}">
+   ${content} ${index}
    <div class="col-resize" data-resize="column">
   </div>
   </div>`
 }
 
 const createRow = (content, index) => {
-  console.log("index: ", index)
   const resizer = index ? ` <div class="row-resize" data-resize="row">
    </div>` : ""
   return `
@@ -29,9 +28,10 @@ const createRow = (content, index) => {
    </div>`
 }
 
-const createCell = () => {
+const createCell = (_, col) => {
   return `
     <div class="cell" contenteditable>
+    ${col}
     </div>`
 }
 

@@ -26,6 +26,9 @@ class Dom {
   getCords() {
     return this.$element.getBoundingClientRect()
   }
+  get data() {
+    return this.$element.dataset
+  }
   append(node) {
     if (node instanceof Dom) {
       node = node.$element
