@@ -17,19 +17,30 @@ export class Table extends ExcelComponent {
   onMousedown(ev) {
     if (ev.target.dataset.resize) {
       const $resizer = $(ev.target)
+      const type = $resizer.data.resize
+      console.log(type);
       // const $parent = $resizer.$element.parentNode // bad!
       // const $parent = $resizer.$element.closest(".column")//betterbutnotbest
       const $parent = $resizer.closest("[data-type = \"resizable\"]")
+      const cells = this.$root.findAll(`[data-col = "${$parent.data.col}"]`)
       const cords = $parent.getCords()
+      console.log(cords)
       document.onmousemove = ev => {
-        console.log($parent.data)
-        const delta = ev.pageX - cords.right
-        const value = cords.width + delta
-        $parent.$element.style.width = value + "px"
-        document.querySelectorAll(`[data-col = "${$parent.data.col}"]`)
-            .forEach(element =>{
-              element.style.width = value + "px"
-            })
+        if (type === "column") {
+          const delta = ev.pageX - cords.right
+          const value = cords.width + delta
+          // $parent.$element.style.width = value + "px"
+          $parent.css({
+            width: value + "px"
+          })
+          cells.forEach(element => element.style.width = value + "px")
+        } else {
+          const delta = ev.pageY - cords.bottom
+          const value = cords.height + delta
+          $parent.css({
+            height: value + "px",
+          })
+        }
       }
       document.onmouseup = () => {
         document.onmousemove = null

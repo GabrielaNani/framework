@@ -29,6 +29,22 @@ class Dom {
   get data() {
     return this.$element.dataset
   }
+  findAll(selector) {
+    return this.$element.querySelectorAll(selector)
+  }
+  css(styles = {}) {
+    // for (const stylesKey in styles) {
+    //   if (styles.hasOwnProperty(stylesKey)) {
+    //     console.log(stylesKey, "stylesKey")
+    //     console.log(styles[stylesKey], "styles");
+    //   }
+    // }
+    Object
+        .keys(styles)
+        .forEach(key =>{
+          this.$element.style[key] = styles[key]
+        })
+  }
   append(node) {
     if (node instanceof Dom) {
       node = node.$element

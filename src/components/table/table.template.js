@@ -7,7 +7,7 @@ const createCol = (content, index) => {
   return `
 <div class=''></div>
   <div class="column" data-type="resizable" data-col="${index}">
-   ${content} ${index}
+   ${content}
    <div class="col-resize" data-resize="column">
   </div>
   </div>`
@@ -17,8 +17,8 @@ const createRow = (content, index) => {
   const resizer = index ? ` <div class="row-resize" data-resize="row">
    </div>` : ""
   return `
-   <div class="row">
-        <div class="row-info" data-type="resizable">
+   <div class="row" data-type="resizable">
+        <div class="row-info">
       ${resizer}
     ${index ?index : ""}
         </div>
@@ -30,8 +30,7 @@ const createRow = (content, index) => {
 
 const createCell = (_, col) => {
   return `
-    <div class="cell" contenteditable>
-    ${col}
+    <div class="cell" contenteditable data-col="${col}">
     </div>`
 }
 
