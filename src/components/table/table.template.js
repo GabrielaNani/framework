@@ -7,7 +7,7 @@ const createCol = (content, index) => {
   return `
 <div class=''></div>
   <div class="column" data-type="resizable" data-col="${index}">
-   ${content}
+   ${content} ${index}
    <div class="col-resize" data-resize="column">
   </div>
   </div>`
@@ -28,9 +28,10 @@ const createRow = (content, index) => {
    </div>`
 }
 
-const createCell = (_, col) => {
-  return `
-    <div class="cell" contenteditable data-col="${col}">
+const createCell = (row) => {
+  return (_, col)=> `
+    <div class="cell" contenteditable data-col="${col}" data-id="${row}:${col}">
+     ${row} ${col}
     </div>`
 }
 
@@ -51,7 +52,8 @@ export const createTable = (rowsCount = 50) => {
   for (let i = 0; i < rowsCount; i++) {
     const cells = new Array(colsCount)
         .fill("")
-        .map(createCell)
+        // .map((_, index) => createCell(index, i + 1))
+        .map(createCell(i + 1))
         .join("")
     rows.push(createRow(cells, i + 1))
   }

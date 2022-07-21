@@ -2,6 +2,8 @@ import {ExcelComponent} from "@core/ExcelComponent";
 import {createTable} from "@/components/table/table.template";
 import {resizeEvents} from "@/components/table/table.resize";
 import {shouldResize} from "@/components/table/table.functions";
+import {TableSelection} from "@/components/table/tableSelection";
+
 
 export class Table extends ExcelComponent {
   static className = "excel__table"
@@ -10,22 +12,22 @@ export class Table extends ExcelComponent {
       name: "Table",
       listeners: ["mousedown"]
     }
-    );
+    )
   }
-  // onClick(ev) {
-  //   console.log("click")
-  // }
   onMousedown(ev) {
     if (shouldResize(ev)) {
       resizeEvents(this.$root, ev)
     }
   }
-  // onMouseup(ev) {
-  //   console.log("mouse up")
-  // }
-  // onMousemove(ev) {
-  //   console.log("mouse Move")
-  // }
+  prepare() {
+  }
+
+  init() {
+    super.init()
+    this.selection = new TableSelection()
+    const $cell = this.$root.find("[data-id = '1:0']")
+    this.selection.select($cell)
+  }
   toHTML() {
     return createTable()
   }

@@ -32,6 +32,9 @@ class Dom {
   findAll(selector) {
     return this.$element.querySelectorAll(selector)
   }
+  find(selector) {
+    return this.$element.querySelector(selector)
+  }
   css(styles = {}) {
     // for (const stylesKey in styles) {
     //   if (styles.hasOwnProperty(stylesKey)) {
@@ -44,6 +47,13 @@ class Dom {
         .forEach(key =>{
           this.$element.style[key] = styles[key]
         })
+  }
+  addClass(className) {
+    this.$element.classList.add(className)
+  }
+  removeClass(className) {
+    console.log(className)
+    // return this.$element.classList.remove(className)
   }
   append(node) {
     if (node instanceof Dom) {
